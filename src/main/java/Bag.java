@@ -113,12 +113,22 @@ public abstract class Bag {
             return null;
         }
 
+        else if(numberOfContents == 1) {
+            String contentHolder = contents[0];
+            this.contents = new String[capacity];
+            numberOfContents--;
+            return contentHolder;
+        }
+
         String contentHolder = "";
-        String[] newContents = new String[contents.length - 1];
+        String[] newContents = new String[capacity];
 
         for (int i = 0; i < contents.length - 1; i++) {
             newContents[i] = contents[i];
             contentHolder = contents[i+1];
+            if (contents[i+2] == null) {
+                break;
+            }
         }
 
         this.contents = newContents;
